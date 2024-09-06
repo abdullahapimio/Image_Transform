@@ -1,31 +1,34 @@
-**README.md: FastAPI Image Processing Service**
-Overview
+# **Image Transformation API**
+
+## Overview
+
 This FastAPI application provides automated image processing services that convert images to JPEG format with a white background, ensuring they conform to certain size and dimension specifications. The application is designed to receive URLs pointing to images, process each according to predefined criteria, and allow users to retrieve the processed images.
 
-API Hosted at:
+### API Hosted at:
 
-https://apimio-ai.an.r.appspot.com/
+[https://apimio-ai.an.r.appspot.com/]()
 
-API Endpoints
-1. Process Images Endpoint
+## API Endpoints
 
-Endpoint: /process_images
+### 1. Process Images Endpoint
 
-Method: POST
-Description: This endpoint processes a list of images from provided URLs, converting them to JPEG format with a white background and adjusting their size and dimensions to meet specified criteria.
+- **Endpoint**: `/process_images`
+- **Method**: `POST`
+- **Description**: This endpoint processes a list of images from provided URLs, converting them to JPEG format with a white background and adjusting their size and dimensions to meet specified criteria.
 
-Request Format:
+#### Request Format:
 
+```json
 {
   "urls": [
     "string"
   ]
 }
+```
 
+#### Respone Format:
 
-Response Format:
-
-
+```json
 {
   "processed_images": [
     {
@@ -40,19 +43,22 @@ Response Format:
   ]
 }
 
-Example Request:
+```
 
+#### Example Request:
 
-curl -X POST 'https://apimio-ai.an.r.appspot.com/process_images' \
--H 'Content-Type: application/json' \
--d '{
+```bash
+curl -X POST 'https://apimio-ai.an.r.appspot.com/process_images' -H 'Content-Type: application/json' -d '{
     "urls": [
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg"
     ]
 }'
+```
 
+#### Example Response:
 
+```json
 {
   "processed_images": [
     {
@@ -66,31 +72,32 @@ curl -X POST 'https://apimio-ai.an.r.appspot.com/process_images' \
     }
   ]
 }
-
-
-2. Get Processed Image Endpoint
-
-Endpoint: /get_processed_image/
-
-Method: GET
-Description: Retrieves a previously processed image from a given URL. The image is returned in JPEG format and must have been processed previously via the /process_images endpoint.
-
-
-Query Parameters:
-
-url: The original URL of the image that was processed.
-
-
-Response:
-
-Content-Type: image/jpeg
-The API streams back the processed image in JPEG format.
-
-Example Request:
-
-curl 'https://apimio-ai.an.r.appspot.com/get_processed_image/?url=https://example.com/image1.jpg'
+```
 
 Usage
 To use this API, you must provide valid image URLs that are publicly accessible. Images are processed based on predefined criteria and are made available via the get endpoint. For demonstration purposes, replace https://example.com/image1.jpg with actual URLs of your images when making requests.
 
-This documentation should provide clear instructions on how to interact with the FastAPI Image Processing Service. Adjust the document as necessary to match additional functionalities or updates in your API.
+### 2. Get Processed Image Endpoint
+
+- **Endpoint**: `/get_processed_image/`
+- **Method**: `GET`
+- **Description**: Retrieves a previously processed image from a given URL. The image is returned in JPEG format and must have been processed previously via the `/process_images` endpoint.
+
+#### Query Parameters:
+
+- `url`: The original URL of the image that was processed.
+
+#### Response:
+
+- **Content-Type**: `image/jpeg`
+- The API streams back the processed image in JPEG format.
+
+#### Example Request:
+
+```bash
+curl 'https://apimio-ai.an.r.appspot.com/get_processed_image/?url=https://example.com/image1.jpg'
+```
+
+## Usage
+
+To use this API, you must provide valid image URLs that are publicly accessible. Images are processed based on predefined criteria and are made available via the get endpoint. For demonstration purposes, replace `https://example.com/image1.jpg` with actual URLs of your images when making requests.
